@@ -44,7 +44,7 @@ export default function Home() {
       
     <HeaderHome />
 
-    <div className="w-[90%] flex md:flex-row max-[426px]:flex-col justify-center items-center">
+    <div className="w-[90%] flex md:flex-row max-[426px]:flex-col justify-center items-center max-[426px]:pb-4">
 
         <myCountry.Provider value={{ setCountry }}>
             
@@ -77,9 +77,11 @@ export default function Home() {
       <div className="w-[90%] h-auto flex flex-wrap max-[426px]:justify-center md:justify-between items-center gap-4">
         {data &&
           data.map((element, key) => (
-            <div key={key} className="lg:w-[280px] w-[300px] lg:h-[350px] h-[370px]">
-            {
+
                 element.region.includes(region) && element.name.common.includes(country) ?  
+
+                <div key={key} className="lg:w-[280px] w-[300px] lg:h-[350px] h-[370px]">
+
                 
                 <NavLink key={key} to={`/Info/${key}`}>
 
@@ -90,8 +92,12 @@ export default function Home() {
                     </myElement.Provider>
 
                 </NavLink> 
+                </div>
+
               : 
                region == "All" && element.name.common.includes(country) ?
+
+               <div key={key} className="lg:w-[280px] w-[300px] lg:h-[350px] h-[370px]">
 
                <NavLink key={key} to={`/Info/${key}`}>
 
@@ -102,11 +108,12 @@ export default function Home() {
                </myElement.Provider>
 
            </NavLink>
+           </div>
+
            : 
            ""
 
-              }
-              </div>
+            
 
           ))}
       </div>
