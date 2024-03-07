@@ -7,6 +7,7 @@ import HeaderHome from "./HeaderHome";
 import CountryCard from "./CountryCard";
 import Searchbar from "./Searchbar";
 import DropDown from "./Dropdown";
+import dropdownIcon from "./../img/dropdown.png"
 
 export const myElement = createContext()
 
@@ -53,7 +54,7 @@ export default function Home() {
 
         <div className="relative w-[50%] flex justify-end text-[15px]">
 
-            <button onClick={()=>setMenu(!openMenu)} className="w-[250px] h-[50px] shadow flex justify-center items-center"><p>Filter by Region</p></button>
+            <button onClick={()=>setMenu(!openMenu)} className="w-[250px] h-[50px] shadow flex justify-center items-center gap-6"><p>Filter by Region</p><img src={dropdownIcon} className="w-[18px] h-[18px]" alt="" /></button>
             
         {
             openMenu ? 

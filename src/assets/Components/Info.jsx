@@ -55,7 +55,7 @@ export default function Info() {
 
             <div className="w-[100%] flex justify-center items-center">
               <div className="w-[50%]">
-                <p><span className="font-semibold">Native Name:</span> </p>
+                <p><span className="font-semibold">Native Name:</span>{Object.keys(data[id].name.nativeName)}</p>
                 <p><span className="font-semibold">Population:</span> {data[id].population}</p>
                 <p><span className="font-semibold">Region:</span> {data[id].region}</p>
                 <p><span className="font-semibold">Sub Region:</span> {data[id].subregion}</p>
@@ -64,8 +64,8 @@ export default function Info() {
 
               <div className="w-[50%]">
               <p><span className="font-semibold">Top Level Domain:</span> {data[id].tld}</p>
-              <p><span className="font-semibold">Currencies:</span></p>
-              <p><span className="font-semibold">Languages:</span> {Object.values(data[id].languages)}</p>
+              <p><span className="font-semibold">Currencies: {Object.keys(data[id].currencies) + " "}</span></p>
+              <p><span className="font-semibold">Languages:</span> {Object.values(data[id].languages) + " "}</p>
               </div>
             </div>
 
