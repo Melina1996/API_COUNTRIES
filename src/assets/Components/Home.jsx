@@ -4,10 +4,13 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 import HeaderHome from "./HeaderHome";
+import CountryCard from "./CountryCard";
 
-export const myData = createContext();
+export const myElement = createContext()
+
 
 export default function Home() {
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -21,30 +24,47 @@ export default function Home() {
       });
   }, []);
 
+  const [region,setRegion]= useState("Africa")
+
   return (
-    <div className="w-screen flex flex-col justify-center items-center gap-4">
+
+    <div className="w-screen flex flex-col justify-center items-center">
       
     <HeaderHome />
 
-      <div className="w-[90%] flex flex-wrap justify-between items-center gap-6">
+      <div className="w-[90%] flex flex-wrap justify-center items-center">
         {data &&
           data.map((element, key) => (
-            <NavLink key={key} to={`/Info/${key}`}>
-              <div className="flex flex-col justify-center items-center w-[300px] h-[450px] text-black shadow-xl rounded p-2">
-                <div>
-                    <img src="" alt="" />
-                </div>
-                <div>
-                    <h1>{element.name.common}</h1>
-                    <div>
-                        <p>Population: {element.population}</p>
-                        <p>Region: {element.region}</p>
-                        <p>Capital: {element.capital}</p>
-                    </div>
+            <div>
+            {
+                element.region.includes(region) ?  
                 
-                </div>
+                <NavLink key={key} to={`/Info/${key}`}>
+
+                    <myElement.Provider value={{ element }}>
+
+                        <CountryCard />
+
+                    </myElement.Provider>
+
+                </NavLink> : 
+
+                region == "all" ?
+
+                <NavLink key={key} to={`/Info/${key}`}>
+
+                    <myElement.Provider value={{ element }}>
+
+                        <CountryCard />
+
+                    </myElement.Provider>
+
+                </NavLink>
+              : 
+              ""
+              }
               </div>
-            </NavLink>
+
           ))}
       </div>
     </div>
