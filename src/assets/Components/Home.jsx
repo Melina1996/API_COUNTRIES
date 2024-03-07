@@ -5,8 +5,11 @@ import axios from "axios";
 
 import HeaderHome from "./HeaderHome";
 import CountryCard from "./CountryCard";
+import Searchbar from "./Searchbar";
 
 export const myElement = createContext()
+
+export const myCountry = createContext()
 
 
 export default function Home() {
@@ -24,20 +27,29 @@ export default function Home() {
       });
   }, []);
 
-  const [region,setRegion]= useState("Africa")
+  const[region,setRegion]= useState("all")
+
+  const[country,setCountry]=useState("")
+
 
   return (
 
     <div className="w-screen flex flex-col justify-center items-center">
       
     <HeaderHome />
+    
+    <myCountry.Provider value={{ setCountry }}>
+        
+        <Searchbar />
+
+    </myCountry.Provider>
 
       <div className="w-[90%] flex flex-wrap justify-center items-center">
         {data &&
           data.map((element, key) => (
-            <div>
+            <div key={key} className="flex gap-3">
             {
-                element.region.includes(region) ?  
+                element.region.includes(region) && element.name.common.includes(country) ?  
                 
                 <NavLink key={key} to={`/Info/${key}`}>
 
@@ -47,21 +59,22 @@ export default function Home() {
 
                     </myElement.Provider>
 
-                </NavLink> : 
-
-                region == "all" ?
-
-                <NavLink key={key} to={`/Info/${key}`}>
-
-                    <myElement.Provider value={{ element }}>
-
-                        <CountryCard />
-
-                    </myElement.Provider>
-
-                </NavLink>
+                </NavLink> 
               : 
-              ""
+               region == "all" && element.name.common.includes(country) ?
+
+               <NavLink key={key} to={`/Info/${key}`}>
+
+               <myElement.Provider value={{ element }}>
+
+                   <CountryCard />
+
+               </myElement.Provider>
+
+           </NavLink>
+           : 
+           ""
+
               }
               </div>
 
