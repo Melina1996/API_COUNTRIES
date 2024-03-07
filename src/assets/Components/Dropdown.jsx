@@ -8,7 +8,7 @@ export default function DropDown() {
 
   return (
     
-    <div className='flex flex-col absolute top-[55px] w-[250px] h-max bg-white rounded shadow-lg'>
+    <div className='flex flex-col absolute top-[55px] xl:w-[250px] md:w-[180px] w-[300px] h-max bg-white rounded shadow-lg'>
       
       <ul className='flex flex-col gap-4 py-4'>
         <button onClick={()=>setRegion("All")} className='hover:font-bold flex justify-start pl-10'><p>All</p></button>

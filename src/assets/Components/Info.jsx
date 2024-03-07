@@ -38,23 +38,23 @@ export default function Info() {
       </div>
 
       {data[id] ? (
-        <div className="w-[90%] h-[400px] flex justify-center items-center">
-          <div className="w-[50%] h-[100%] flex justify-start items-start">
+        <div className="w-[90%] xl:h-[400px] lg:h-[300px] flex lg:flex-row flex-col justify-center items-center gap-4">
+          <div className="lg:w-[50%] w-[90%] lg:h-[100%] flex justify-start items-center">
             <img
               src={data[id].flags.png}
-              className="object-cover h-[90%] w-[90%]"
+              className="object-cover xl:h-[80%] lg:h-[75%] w-[100%]"
               alt=""
             />
           </div>
 
-          <div className="w-[50%] h-[100%] flex flex-col items-start justify-start gap-4">
+          <div className="lg:w-[50%] w-[90%] lg:h-[100%] flex flex-col items-start justify-center gap-4">
 
             <h1 className="font-semibold text-[30px]">
               {data[id].name.common}
             </h1>
 
-            <div className="w-[100%] flex justify-center items-center">
-              <div className="w-[50%]">
+            <div className="w-[100%] flex flex-row max-[426px]:flex-col justify-center items-start">
+              <div className="md:w-[50%] max-[426px]:w-[100%]">
                 <p><span className="font-semibold">Native Name:</span>{Object.keys(data[id].name.nativeName)}</p>
                 <p><span className="font-semibold">Population:</span> {data[id].population}</p>
                 <p><span className="font-semibold">Region:</span> {data[id].region}</p>
@@ -62,20 +62,20 @@ export default function Info() {
                 <p><span className="font-semibold">Capital:</span> {data[id].capital}</p>
               </div>
 
-              <div className="w-[50%]">
+              <div className="md:w-[50%] max-[426px]:w-[100%]">
               <p><span className="font-semibold">Top Level Domain:</span> {data[id].tld}</p>
               <p><span className="font-semibold">Currencies: {Object.keys(data[id].currencies) + " "}</span></p>
               <p><span className="font-semibold">Languages:</span> {Object.values(data[id].languages) + " "}</p>
               </div>
             </div>
 
-            <div className="flex justify-center items-center w-[100%]">
+            <div className="flex md:flex-row max-[426px]:flex-col justify-center items-center w-[100%] gap-4 md:gap-0">
 
-                <div className="w-[25%] flex justify-start">
+                <div className="md:w-[25%] max-[426px]:w-[100%] flex justify-start">
                     <p className="pr-2 font-semibold">Border Countries: </p>
                 </div>
 
-                <div className="w-[75%] flex flex-wrap">
+                <div className="md:w-[75%] max-[426px]:w-[100%] flex flex-wrap">
 
                     {data[id].borders
                         ? data[id].borders.map((element, key) => {

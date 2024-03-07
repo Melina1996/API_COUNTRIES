@@ -44,7 +44,7 @@ export default function Home() {
       
     <HeaderHome />
 
-    <div className="w-[90%] flex justify-center items-center">
+    <div className="w-[90%] flex md:flex-row max-[426px]:flex-col justify-center items-center">
 
         <myCountry.Provider value={{ setCountry }}>
             
@@ -52,9 +52,9 @@ export default function Home() {
 
         </myCountry.Provider>
 
-        <div className="relative w-[50%] flex justify-end text-[15px]">
+        <div className="relative md:w-[50%] max-[426px]:w-[100%] flex md:justify-end max-[426px]:justify-center text-[15px]">
 
-            <button onClick={()=>setMenu(!openMenu)} className="w-[250px] h-[50px] shadow flex justify-center items-center gap-6"><p>Filter by Region</p><img src={dropdownIcon} className="w-[18px] h-[18px]" alt="" /></button>
+            <button onClick={()=>setMenu(!openMenu)} className="xl:w-[250px] md:w-[180px] w-[300px] h-[50px] shadow flex justify-center items-center gap-6"><p>Filter by Region</p><img src={dropdownIcon} className="w-[18px] h-[18px]" alt="" /></button>
             
         {
             openMenu ? 
@@ -74,10 +74,10 @@ export default function Home() {
     
 
 
-      <div className="w-[90%] flex flex-wrap justify-center items-center">
+      <div className="w-[90%] h-auto flex flex-wrap max-[426px]:justify-center md:justify-between items-center gap-4">
         {data &&
           data.map((element, key) => (
-            <div key={key} className="flex gap-3">
+            <div key={key} className="lg:w-[280px] w-[300px] lg:h-[350px] h-[370px]">
             {
                 element.region.includes(region) && element.name.common.includes(country) ?  
                 
