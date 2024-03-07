@@ -6,10 +6,13 @@ import axios from "axios";
 import HeaderHome from "./HeaderHome";
 import CountryCard from "./CountryCard";
 import Searchbar from "./Searchbar";
+import DropDown from "./Dropdown";
 
 export const myElement = createContext()
 
 export const myCountry = createContext()
+
+export const myRegion = createContext()
 
 
 export default function Home() {
@@ -27,9 +30,11 @@ export default function Home() {
       });
   }, []);
 
-  const[region,setRegion]= useState("all")
+  const[region,setRegion]= useState("All")
 
   const[country,setCountry]=useState("")
+
+  const[openMenu,setMenu]=useState(false)
 
 
   return (
@@ -37,12 +42,36 @@ export default function Home() {
     <div className="w-screen flex flex-col justify-center items-center">
       
     <HeaderHome />
-    
-    <myCountry.Provider value={{ setCountry }}>
-        
-        <Searchbar />
 
-    </myCountry.Provider>
+    <div className="w-[90%] flex justify-center items-center">
+
+        <myCountry.Provider value={{ setCountry }}>
+            
+            <Searchbar />
+
+        </myCountry.Provider>
+
+        <div className="relative w-[50%] flex justify-end text-[15px]">
+
+            <button onClick={()=>setMenu(!openMenu)} className="w-[250px] h-[50px] shadow flex justify-center items-center"><p>Filter by Region</p></button>
+            
+        {
+            openMenu ? 
+            <myRegion.Provider value={{ setRegion }}>
+
+                <DropDown /> 
+            
+            </myRegion.Provider> :
+
+            ""
+        }
+        </div>
+        
+
+
+    </div>
+    
+
 
       <div className="w-[90%] flex flex-wrap justify-center items-center">
         {data &&
@@ -61,7 +90,7 @@ export default function Home() {
 
                 </NavLink> 
               : 
-               region == "all" && element.name.common.includes(country) ?
+               region == "All" && element.name.common.includes(country) ?
 
                <NavLink key={key} to={`/Info/${key}`}>
 
