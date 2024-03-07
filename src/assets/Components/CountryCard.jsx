@@ -8,7 +8,7 @@ export default function CountryCard() {
   return (
     <div className="flex flex-col justify-center items-center w-[280px] h-[350px] text-black shadow-xl rounded">
         <div className='h-[50%] w-[100%] flex justify-center items-center'>
-            <img src={element.flags.png} className='object-fit h-[100%] w-[100%] rounded-t' alt="" />
+            <img src={element.flags.png} className='object-cover h-[100%] w-[100%] rounded-t' alt="" />
         </div>
         <div className='h-[50%] w-[80%] flex flex-col justify-center items-start'>
             <h1 className='font-semibold text-lg pb-1'>{element.name.common}</h1>

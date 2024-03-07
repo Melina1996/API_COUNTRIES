@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
 
-    <div className="w-screen flex flex-col justify-center items-center">
+    <div className="w-screen flex flex-col justify-center items-center font-nunito">
       
     <HeaderHome />
 
