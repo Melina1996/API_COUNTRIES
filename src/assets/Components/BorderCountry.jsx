@@ -24,7 +24,7 @@ export default function BorderCountry() {
   return (
     <div>
 
-        <button className='shadow p-2 flex justify-center items-center text-center'>{    
+        <button className='shadow p-2 flex justify-center items-center text-center lg:text-[15px] xl:text-[18px]'>{    
           data.map((item, key)=> {
               return(
                   <div key={key} className='flex justify-center items-center text-center'>
