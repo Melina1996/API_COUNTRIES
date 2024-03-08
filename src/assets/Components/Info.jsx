@@ -77,7 +77,7 @@ export default function Info() {
       <HeaderHome />
 
       <div className="w-[90%] h-[100px] flex justify-start items-center">
-        <button className="flex justify-center items-center shadow rounded h-[40px] px-6">
+        <button className="flex justify-center items-center shadow rounded h-[40px] px-6 hover:bg-[#F5F5F5ff]">
           <Link to={`/API_COUNTRIES`}>
             <span className="flex justify-center items-center gap-1">
               <img src={Arrow} className="w-[20px] h-[20px]" alt="" />
@@ -88,21 +88,21 @@ export default function Info() {
       </div>
 
       {data[id] ? (
-        <div className="w-[90%] xl:h-[400px] lg:h-[300px] flex lg:flex-row flex-col justify-center items-center xl:gap-24 lg:gap-16">
-          <div className="xl:w-[45%] lg:w-[50%] w-[90%] lg:h-[100%] flex justify-start items-center">
+        <div className="w-[90%] xl:h-[400px] lg:h-[300px] flex lg:flex-row flex-col justify-center items-center xl:gap-24 lg:gap-16 md:gap-10 md:h-[600px]">
+          <div className="xl:w-[45%] lg:w-[50%] w-[90%] lg:h-[100%] max-[426px]:h-[230px] md:h-[50%] flex justify-start items-center">
             <img
               src={data[id].flags.png}
-              className="object-fit xl:h-[80%] xl:w-[90%] lg:w-[100%] lg:h-[90%]"
+              className="object-fit xl:h-[80%] xl:w-[90%] lg:w-[100%] lg:h-[90%] md:h-[90%] md:w-[70%] rounded max-[426px]:w-[100%] max-[426px]:h-[80%]"
               alt=""
             />
           </div>
 
-          <div className="xl:w-[55%] lg:w-[50%] w-[90%] lg:h-[100%] flex flex-col items-start justify-center gap-4">
-            <h1 className="font-semibold xl:text-[30px] lg:text-[25px] pb-2">
+          <div className="xl:w-[55%] lg:w-[50%] w-[90%] md:h-[50%] lg:h-[100%] flex flex-col items-start justify-center gap-4 md:pb-10 max-[426px]:pb-10">
+            <h1 className="font-semibold xl:text-[30px] md:text-[25px] pb-2 max-[426px]:text-[25px]">
               {data[id].name.common}
             </h1>
 
-            <div className="w-[100%] flex flex-row max-[426px]:flex-col justify-center items-start">
+            <div className="w-[100%] flex flex-row max-[426px]:flex-col justify-center items-start max-[426px]:gap-3">
               <div className="md:w-[50%] max-[426px]:w-[100%] flex flex-col gap-3 lg:text-[15px] xl:text-[18px]">
                 <p>
                   <span className="font-semibold">Native Name:</span>{" "}
@@ -135,32 +135,39 @@ export default function Info() {
                   <span className="font-semibold">Currencies:</span>{" "}
                   {Object.values(currency) + " "}
                 </p>
-                <p>
+                <p className="flex flex-wrap">
                   <span className="font-semibold">Languages:</span>{" "}
                   {Object.values(data[id].languages) + " "}
                 </p>
               </div>
             </div>
 
-            <div className="flex md:flex-row max-[426px]:flex-col justify-center items-center w-[100%] gap-4 md:gap-0">
-              <div className="md:w-[25%] max-[426px]:w-[100%] flex justify-start">
-                <p className="pr-2 font-semibold lg:text-[15px] xl:text-[18px]">Border Countries: </p>
-              </div>
+            {/* only if the respective element has a "borders"-property, I will display the neighbouring countries */}
+            {data[id].borders ? (
+              <div className="flex md:flex-row max-[426px]:flex-col justify-center items-center w-[100%] gap-4 md:gap-0">
+                <div className="md:w-[25%] max-[426px]:w-[100%] flex justify-start items-start">
+                  <p className="pr-2 font-semibold lg:text-[15px] xl:text-[18px]">
+                    Border Countries:{" "}
+                  </p>
+                </div>
 
-              <div className="md:w-[75%] max-[426px]:w-[100%] flex flex-wrap gap-2">
-                {data[id].borders
-                  ? data[id].borders.map((element, key) => {
-                      return (
-                        <div key={key}>
-                          <border.Provider value={{ element }}>
-                            <BorderCountry />
-                          </border.Provider>
-                        </div>
-                      );
-                    })
-                  : ""}
+                <div className="md:w-[75%] max-[426px]:w-[100%] flex flex-wrap gap-2">
+                  {data[id].borders
+                    ? data[id].borders.map((element, key) => {
+                        return (
+                          <div key={key}>
+                            <border.Provider value={{ element }}>
+                              <BorderCountry />
+                            </border.Provider>
+                          </div>
+                        );
+                      })
+                    : ""}
+                </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       ) : (

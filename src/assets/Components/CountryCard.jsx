@@ -8,16 +8,16 @@ export default function CountryCard() {
     <div className="flex flex-col justify-center items-center w-[100%] h-[100%] text-black shadow-xl rounded bg-white">
       <div className="h-[45%] w-[100%] flex justify-center items-center">
         <div className="w-[100%] h-[100%] image-container">
-            <img
+          <img
             src={element.flags.png}
             className="object-fill h-[100%] w-[100%] rounded-t my-image"
             alt=""
-            />
+          />
         </div>
       </div>
       <div className="h-[55%] w-[80%] flex flex-col justify-center items-start">
         <h1 className="font-semibold text-lg pb-1">{element.name.common}</h1>
-        <div>
+        <div className="flex flex-col gap-1">
           <p className="text-[15px]">
             <span className="font-semibold">Population:</span>{" "}
             {element.population}
