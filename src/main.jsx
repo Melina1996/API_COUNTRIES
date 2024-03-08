@@ -12,7 +12,7 @@ import Info from "./assets/Components/Info";
 const router = createBrowserRouter([
 
   {
-    path: "/",
+    path: "/API_COUNTRIES",
     element: <Home />
   },
   {
