@@ -78,7 +78,7 @@ export default function Info() {
 
       <div className="w-[90%] h-[100px] flex justify-start items-center">
         <button className="flex justify-center items-center shadow rounded h-[40px] px-6">
-          <Link to={`/`}>
+          <Link to={`/API_COUNTRIES`}>
             <span className="flex justify-center items-center gap-1">
               <img src={Arrow} className="w-[20px] h-[20px]" alt="" />
               <p className="text-[17px]">Back</p>
