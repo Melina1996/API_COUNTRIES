@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { fromJSON } from "postcss";
-import { useContext } from "react";
 
 import HeaderHome from "./HeaderHome";
 import BorderCountry from "./BorderCountry";
@@ -13,6 +11,7 @@ import Arrow from "../img/arrow.png";
 export const border = createContext();
 
 export default function Info() {
+
   const { id } = useParams();
 
   const [data, setData] = useState([]);
@@ -28,6 +27,7 @@ export default function Info() {
       });
   }, []);
 
+  //Currencies-property: the issue is that our API-elements all have a currencies-property & following nested objects for each of the currencies, but the name of the nested objects change depending on the respective currency. In order to be able to access the deepest level of nested objects, I use the reduce-method and loop through the objects as if it was an array. With the index [0] I specify that I want the first property ("name" and nor "symbol"). UseEffect in order to constantly update the currency-state, whenever a new Country is read
   const [currency, setCurrency] = useState("");
 
   useEffect(() => {
@@ -44,6 +44,7 @@ export default function Info() {
       : "";
   }, [data[id]]);
 
+  //See above: use an useEffect here to update my variable for the native name of the country. With the index "1" I indicate that I want to read the 2nd property in all of the objects on this level.
   const [nativeName, setNativeName] = useState("");
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function Info() {
       : "";
   }, [data[id]]);
 
+  //as there are several objects nested at the same level, here I read the last one
   const [lastElement, setLastElement] = useState("");
 
   useEffect(() => {
@@ -137,6 +139,7 @@ export default function Info() {
                 </p>
                 <p className="flex flex-wrap">
                   <span className="font-semibold">Languages:</span>{" "}
+                  {/* I read all the keys' values of my object*/}
                   {Object.values(data[id].languages) + " "}
                 </p>
               </div>

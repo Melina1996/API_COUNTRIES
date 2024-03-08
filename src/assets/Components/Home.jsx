@@ -9,6 +9,7 @@ import Searchbar from "./Searchbar";
 import DropDown from "./Dropdown";
 import dropdownIcon from "./../img/dropdown.png";
 
+//CONTEXTS CREATED
 export const myElement = createContext();
 
 export const myCountry = createContext();
@@ -16,6 +17,8 @@ export const myCountry = createContext();
 export const myRegion = createContext();
 
 export default function Home() {
+
+//READ API
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -29,10 +32,12 @@ export default function Home() {
       });
   }, []);
 
+  //USESTATES FOR FILTERS
   const [region, setRegion] = useState("All");
 
   const [country, setCountry] = useState("");
 
+  //USESTATE FOR DROPDOWN-MENU
   const [openMenu, setMenu] = useState(false);
 
   return (
@@ -65,6 +70,7 @@ export default function Home() {
         </div>
       </div>
 
+        {/* thanks to the combination of filters I created a conditional display of the respective countries */}
       <div className="w-[90%] h-auto flex flex-wrap max-[426px]:justify-center md:justify-between items-center gap-4">
         {data &&
           data.map((element, key) =>

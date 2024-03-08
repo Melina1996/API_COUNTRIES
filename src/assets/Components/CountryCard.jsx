@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { myElement } from "./Home";
 
 export default function CountryCard() {
+    
   const { element } = useContext(myElement);
 
   return (

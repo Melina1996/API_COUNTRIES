@@ -4,6 +4,7 @@ import { myCountry } from "./Home";
 import Search from "../img/search.png";
 
 export default function Searchbar() {
+
   const { setCountry } = useContext(myCountry);
 
   const [inputValue, setInputValue] = useState("");
@@ -27,6 +28,7 @@ export default function Searchbar() {
           placeholder="Search for a country..."
           onChange={(e) => getInput(e)}
         />
+        {/* as we have a search-btn, once it is clicked, it updates the "country"-variable that is used to filter */}
         <button
           onClick={() => setCountry(inputValue)}
           className="absolute left-4 top-1/2 transform -translate-y-1/2"

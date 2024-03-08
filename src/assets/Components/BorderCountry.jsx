@@ -22,7 +22,7 @@ export default function BorderCountry() {
 
   return (
     <div>
-      <button className="shadow p-2 flex justify-center items-center text-center lg:text-[15px] xl:text-[18px]">
+      <button className="shadow p-2 flex justify-center items-center text-center lg:text-[15px] xl:text-[18px] hover:bg-[#F5F5F5ff]">
         {data.map((item, key) => {
           return (
             <div
@@ -32,7 +32,7 @@ export default function BorderCountry() {
               {
                 //check whether the country code matches one of the countries on my API and then takes it's common name and use it's id in order to redirect to the respective info page
                 item.cca3.includes(element) ? (
-                  <NavLink to={`/Info/${key}`} className="rounded-full">
+                  <NavLink to={`/Info/${key}`}>
                     {item.name.common}
                   </NavLink>
                 ) : (
