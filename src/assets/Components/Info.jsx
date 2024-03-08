@@ -52,7 +52,7 @@ export default function Info() {
 
     setNativeName(Object.entries(data[id].name.nativeName).reduce((acc, [key, obj]) => ({
         ...acc,
-        [key]: Object.values(obj)[0],
+        [key]: Object.values(obj)[1],
       }), {}))
     
       :
@@ -60,7 +60,20 @@ export default function Info() {
       ""
 
   },[data[id]])
-  
+
+  const [lastElement,setLastElement]=useState("")
+
+  useEffect(()=>{
+
+    data[id] ?
+
+    setLastElement(nativeName[Object.keys(nativeName)[Object.keys(nativeName).length - 1]])
+    
+      :
+
+      ""
+
+  },[nativeName])
 
   return (
     <div className="w-screen flex flex-col justify-center items-center">
@@ -90,7 +103,7 @@ export default function Info() {
 
             <div className="w-[100%] flex flex-row max-[426px]:flex-col justify-center items-start">
               <div className="md:w-[50%] max-[426px]:w-[100%]">
-                <p><span className="font-semibold">Native Name:</span>{Object.values(nativeName)+ " "}</p>
+                <p><span className="font-semibold">Native Name:</span> {lastElement}</p>
                 <p><span className="font-semibold">Population:</span> {data[id].population}</p>
                 <p><span className="font-semibold">Region:</span> {data[id].region}</p>
                 <p><span className="font-semibold">Sub Region:</span> {data[id].subregion}</p>
